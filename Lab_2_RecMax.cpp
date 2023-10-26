@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 
 using namespace std;
 
@@ -33,13 +33,18 @@ int main()
 
 int SearchMax(int* Arr, int l, int r)
 {
-    int maxi, maxl, maxr;
-
+    int maxi, maxl, maxr, mid = (l + r) / 2;
+    cout << "l = " << l << " r = " << r << endl;
     if (l == r)
-        return maxi = l;
-
-    maxl = SearchMax(Arr, l, r / 2);
-    maxr = SearchMax(Arr, l / 2, r);
+        return maxi = r;
+    if ((r - l) == 1)
+    {
+        if (Arr[l] > Arr[r])
+            return l;
+        return r;
+    }
+    maxl = SearchMax(Arr, l, mid);
+    maxr = SearchMax(Arr, mid, r);
     if (Arr[maxl] > Arr[maxr])
         return maxl;
     else
