@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -13,30 +14,26 @@ int main()
     int* Arr = new int[n];
     int maxInd, leftInd = 0, RightInd = n - 1;
 
-    srand(time(NULL));
     for (int i = 0; i < n; i++)
-        Arr[i] = rand() % 10;
+        Arr[i] = i;
+    random_shuffle(&Arr[0], &Arr[n]);
 
-    cout << "массив\n";
+    cout << "Массив\n";
     for (int i = 0; i < n; i++)
-        cout << i << " ";
-    cout << endl;
-    for (int i = 0; i < n; i++)
-        cout << Arr[i] << " ";
+        cout << "Arr[" << i << "] = " << Arr[i] << endl;
 
     maxInd = SearchMax(Arr, leftInd, RightInd);
 
-    cout << "Arr[max] = " << Arr[maxInd] << " Index = " << maxInd;
+    cout << "\nЗначение максимального элемента: " << Arr[maxInd] << "\nЕго индекс: " << maxInd;
 
     delete[] Arr;
 }
 
 int SearchMax(int* Arr, int l, int r)
 {
-    int maxi, maxl, maxr, mid = (l + r) / 2;
-    cout << "l = " << l << " r = " << r << endl;
+    int maxl, maxr, mid = (l + r) / 2;
     if (l == r)
-        return maxi = r;
+        return r;
     if ((r - l) == 1)
     {
         if (Arr[l] > Arr[r])
